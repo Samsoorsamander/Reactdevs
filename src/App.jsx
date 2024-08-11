@@ -3,22 +3,23 @@ import "./App.css";
 export default function App() {
   return (
     <>
-      <LightSwitch />
+      <ColorSwitch onChangeColor={() => console.log("cliked")} />
     </>
   );
 }
 
-// Challenge 1:
+// Challenge 2:
 // fix the event
-function LightSwitch() {
-  function handleClick() {
-    let bodyStyle = document.body.style;
-    if (bodyStyle.backgroundColor === "black") {
-      bodyStyle.backgroundColor = "white";
-    } else {
-      bodyStyle.backgroundColor = "black";
-    }
-  }
 
-  return <button onClick={() => handleClick()}>Toggle the lights</button>;
+function ColorSwitch({ onChangeColor }) {
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onChangeColor();
+      }}
+    >
+      Change color
+    </button>
+  );
 }
