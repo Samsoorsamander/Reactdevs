@@ -1,41 +1,30 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+=======
+import "./App.css";
+>>>>>>> d7ba872 (passing event handler as props)
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+<<<<<<< HEAD
+      <Button />
+=======
+      <ToolBar />
+>>>>>>> e2486a6 (event going up the tree)
     </>
-  )
+  );
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 export default App
 
-export default function Button() {
+function Button() {
   return (
     <button
       onClick={function handleClick() {
@@ -46,4 +35,35 @@ export default function Button() {
     </button>
   );
 }
+=======
+function Button({ onClick, children }) {
+  return <button onClick={onClick}>{children}</button>;
+}
+function PlayButton({ movieName }) {
+  function handleClick() {
+    alert(`Playing ${movieName}`);
+  }
+  return <Button onClick={handleClick}>Play {movieName}</Button>;
+}
 
+function UploadIMage() {
+  return <Button onClick={() => alert("Uploading")}>Upload image</Button>;
+}
+function AlettButton({ message, children }) {
+  return <button onClick={() => alert(message)}>{children}</button>;
+}
+function TollBar() {
+=======
+function ToolBar() {
+>>>>>>> e2486a6 (event going up the tree)
+  return (
+    <div
+      className="Toolbar"
+      onClick={() => alert("you clicked on the toolbar")}
+    >
+      <button onClick={() => alert("playing")}>Play </button>
+      <button onClick={() => alert("upload the image")}>Upload image</button>
+    </div>
+  );
+}
+>>>>>>> d7ba872 (passing event handler as props)
