@@ -3,34 +3,20 @@ import "./App.css";
 export default function App() {
   return (
     <>
-      <ToolBar />
+      <SignUp />
     </>
   );
 }
 
-function Button({ onClick, children }) {
+function SignUp() {
   return (
-    <>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick();
-        }}
-      >
-        {children}
-      </button>
-    </>
-  );
-}
-
-function ToolBar() {
-  return (
-    <div
-      className="Toolbar"
-      onClickCapture={() => alert("you clicked on the toolbar")}
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        alert("Submiting!");
+      }}
     >
-      <Button onClick={() => alert("playing")}>Play </Button>
-      <Button onClick={() => alert("upload the image")}>Upload image</Button>
-    </div>
+      <button>Send</button>
+    </form>
   );
 }
