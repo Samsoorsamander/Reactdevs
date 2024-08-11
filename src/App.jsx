@@ -1,25 +1,33 @@
 import "./App.css";
+import { sculptureList } from "./Data.js";
 
 export default function App() {
   return (
     <>
-      <ColorSwitch onChangeColor={() => console.log("cliked")} />
+      <Gallery />
     </>
   );
 }
+function Gallery() {
+  let index = 0;
 
-// Challenge 2:
-// fix the event
+  function handleClick() {
+    index = index + 1;
+  }
 
-function ColorSwitch({ onChangeColor }) {
+  let sculpture = sculptureList[index];
   return (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        onChangeColor();
-      }}
-    >
-      Change color
-    </button>
+    <>
+      <button onClick={handleClick}>Next</button>
+      <h2>
+        <i>{sculpture.name} </i>
+        by {sculpture.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {sculptureList.length})
+      </h3>
+      <img src={sculpture.url} alt={sculpture.alt} />
+      <p>{sculpture.description}</p>
+    </>
   );
 }
