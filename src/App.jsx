@@ -29,7 +29,7 @@ function ToolBar() {
   return (
     <div
       className="Toolbar"
-      onClick={() => alert("you clicked on the toolbar")}
+      onClickCapture={() => alert("you clicked on the toolbar")}
     >
       <Button onClick={() => alert("playing")}>Play </Button>
       <Button onClick={() => alert("upload the image")}>Upload image</Button>
