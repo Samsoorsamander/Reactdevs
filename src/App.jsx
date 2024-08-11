@@ -8,14 +8,29 @@ export default function App() {
   );
 }
 
+function Button({ onClick, children }) {
+  return (
+    <>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+      >
+        {children}
+      </button>
+    </>
+  );
+}
+
 function ToolBar() {
   return (
     <div
       className="Toolbar"
       onClick={() => alert("you clicked on the toolbar")}
     >
-      <button onClick={() => alert("playing")}>Play </button>
-      <button onClick={() => alert("upload the image")}>Upload image</button>
+      <Button onClick={() => alert("playing")}>Play </Button>
+      <Button onClick={() => alert("upload the image")}>Upload image</Button>
     </div>
   );
 }
