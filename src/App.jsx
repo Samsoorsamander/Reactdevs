@@ -3,15 +3,15 @@ import "./App.css";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 
-function App() {
+export default function App() {
   return (
     <>
-      <Button />
+      <TollBar />
     </>
   );
 }
 
-export default function Button() {
+function Button() {
   return (
     <button
       onClick={function handleClick() {
@@ -20,5 +20,16 @@ export default function Button() {
     >
       Click me
     </button>
+  );
+}
+function AletButton({ message, children }) {
+  return <button onClick={() => alert(message)}>{children}</button>;
+}
+function TollBar() {
+  return (
+    <>
+      <AletButton message="playing">Play</AletButton>
+      <AletButton message="Uploading">Upload</AletButton>
+    </>
   );
 }
