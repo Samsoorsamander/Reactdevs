@@ -1,7 +1,4 @@
-import { useState } from "react";
 import "./App.css";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 
 export default function App() {
   return (
@@ -11,25 +8,27 @@ export default function App() {
   );
 }
 
-function Button() {
-  return (
-    <button
-      onClick={function handleClick() {
-        alert("this is inline event handling");
-      }}
-    >
-      Click me
-    </button>
-  );
+function Button({ onClick, children }) {
+  return <button onClick={onClick}>{children}</button>;
 }
-function AletButton({ message, children }) {
+function PlayButton({ movieName }) {
+  function handleClick() {
+    alert(`Playing ${movieName}`);
+  }
+  return <Button onClick={handleClick}>Play {movieName}</Button>;
+}
+
+function UploadIMage() {
+  return <Button onClick={() => alert("Uploading")}>Upload image</Button>;
+}
+function AlettButton({ message, children }) {
   return <button onClick={() => alert(message)}>{children}</button>;
 }
 function TollBar() {
   return (
     <>
-      <AletButton message="playing">Play</AletButton>
-      <AletButton message="Uploading">Upload</AletButton>
+      <PlayButton movieName="Lift">Play</PlayButton>
+      <UploadIMage>Upload</UploadIMage>
     </>
   );
 }
