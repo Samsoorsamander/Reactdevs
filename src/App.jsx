@@ -3,20 +3,22 @@ import "./App.css";
 export default function App() {
   return (
     <>
-      <SignUp />
+      <LightSwitch />
     </>
   );
 }
 
-function SignUp() {
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        alert("Submiting!");
-      }}
-    >
-      <button>Send</button>
-    </form>
-  );
+// Challenge 1:
+// fix the event
+function LightSwitch() {
+  function handleClick() {
+    let bodyStyle = document.body.style;
+    if (bodyStyle.backgroundColor === "black") {
+      bodyStyle.backgroundColor = "white";
+    } else {
+      bodyStyle.backgroundColor = "black";
+    }
+  }
+
+  return <button onClick={handleClick}>Toggle the lights</button>;
 }
