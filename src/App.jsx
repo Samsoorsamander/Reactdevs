@@ -10,10 +10,9 @@ export default function App() {
 }
 
 function FeedbackForm() {
-  const [name, setName] = useState("");
-
+  let name;
   function handleClick() {
-    setName(prompt("What is your name?"));
+    name = prompt("What is your name?");
     alert(`Hello, ${name}!`);
   }
 
