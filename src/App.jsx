@@ -5,54 +5,44 @@ import { sculptureList } from "./Data.js";
 export default function App() {
   return (
     <>
-      <Gallery />
+      <Form />
     </>
   );
 }
 
-function Gallery() {
-  const [index, setIndex] = useState(0);
-  const [showMore, setShowMore] = useState(false);
-  const hasNext = index < sculptureList.length - 1;
-  const hasPrev = index > 0;
+function Form() {
+  let firstName = "";
+  let lastName = "";
 
-  function handleNext() {
-    if (hasNext) {
-      setIndex(index + 1);
-    }
+  function handleFirstNameChange(e) {
+    firstName = e.target.value;
   }
 
-  function handlePrev() {
-    if (hasPrev) {
-      setIndex(index - 1);
-    }
+  function handleLastNameChange(e) {
+    lastName = e.target.value;
   }
 
-  function handleMoreClick() {
-    setShowMore(!showMore);
+  function handleReset() {
+    firstName = "";
+    lastName = "";
   }
 
-  let sculpture = sculptureList[index];
   return (
-    <>
-      <button onClick={handleNext} disabled={!hasNext}>
-        Next
-      </button>
-      <button onClick={handlePrev} disabled={!hasPrev}>
-        Previous
-      </button>
-      <h2>
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
-      </h3>
-      <button onClick={handleMoreClick}>
-        {showMore ? "Hide" : "Show"} details
-      </button>
-      {showMore && <p>{sculpture.description}</p>}
-      <img src={sculpture.url} alt={sculpture.alt} />
-    </>
+    <form onSubmit={(e) => e.preventDefault()}>
+      <input
+        placeholder="First name"
+        value={firstName}
+        onChange={handleFirstNameChange}
+      />
+      <input
+        placeholder="Last name"
+        value={lastName}
+        onChange={handleLastNameChange}
+      />
+      <h1>
+        Hi, {firstName} {lastName}
+      </h1>
+      <button onClick={handleReset}>Reset</button>
+    </form>
   );
 }
