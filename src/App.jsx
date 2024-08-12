@@ -13,14 +13,18 @@ export default function App() {
 function Gallery() {
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const hasNext = index < sculptureList.length - 1;
+  const hasPrev = index > 0;
 
-  function handleNextClick() {
-    {
-      if (index < sculptureList.length) {
-        setIndex(index + 1);
-      } else {
-        setIndex(index[0]);
-      }
+  function handleNext() {
+    if (hasNext) {
+      setIndex(index + 1);
+    }
+  }
+
+  function handlePrev() {
+    if (hasPrev) {
+      setIndex(index - 1);
     }
   }
 
@@ -31,7 +35,12 @@ function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleNextClick}>Next</button>
+      <button onClick={handleNext} disabled={!hasNext}>
+        Next
+      </button>
+      <button onClick={handlePrev} disabled={!hasPrev}>
+        Previous
+      </button>
       <h2>
         <i>{sculpture.name} </i>
         by {sculpture.artist}
