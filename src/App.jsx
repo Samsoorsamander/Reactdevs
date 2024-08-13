@@ -1,39 +1,56 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+import { useState } from "react";
 import "./App.css";
+=======
+import { getFinalState } from "./Components/processQueue";
+
+function increment(n) {
+  return n + 1;
+}
+increment.toString = () => "n => n+1";
+>>>>>>> 00bc3b6 (get the expected rersult)
 
 export default function App() {
   return (
     <>
-      <ToolBar />
+      <TestCase baseState={0} queue={[1, 1, 1]} expected={1} />
+      <hr />
+      <TestCase
+        baseState={0}
+        queue={[increment, increment, increment]}
+        expected={3}
+      />
+      <hr />
+      <TestCase baseState={0} queue={[5, increment]} expected={6} />
+      <hr />
+      <TestCase baseState={0} queue={[5, increment, 42]} expected={42} />
     </>
   );
 }
 
-function Button({ onClick, children }) {
+function TestCase({ baseState, queue, expected }) {
+  const actual = getFinalState(baseState, queue);
   return (
     <>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick();
+      <p>
+        Base state: <b>{baseState}</b>
+      </p>
+      <p>
+        Queue: <b>[{queue.join(", ")}]</b>
+      </p>
+      <p>
+        Expected result: <b>{expected}</b>
+      </p>
+      <p
+        style={{
+          color: actual === expected ? "green" : "red",
         }}
       >
-        {children}
-      </button>
+        Your result: <b>{actual}</b> (
+        {actual === expected ? "correct" : "wrong"})
+      </p>
     </>
   );
 }
-
-function ToolBar() {
-  return (
-    <div
-      className="Toolbar"
-      onClickCapture={() => alert("you clicked on the toolbar")}
-    >
-      <Button onClick={() => alert("playing")}>Play </Button>
-      <Button onClick={() => alert("upload the image")}>Upload image</Button>
-    </div>
-  );
-}
->>>>>>> 398a744 (stoping propagation)
