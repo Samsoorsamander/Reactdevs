@@ -4,17 +4,29 @@ import "./App.css";
 export default function App() {
   return (
     <>
-      <FeedbackForm />
+      <TrafficLight />
     </>
   );
 }
 
-function FeedbackForm() {
-  let name;
+function TrafficLight() {
+  const [walk, setWalk] = useState(true);
+
   function handleClick() {
-    name = prompt("What is your name?");
-    alert(`Hello, ${name}!`);
+    setWalk(!walk);
+    alert(walk ? "Stop is next" : "Walk is next");
   }
 
-  return <button onClick={handleClick}>Greet</button>;
+  return (
+    <>
+      <button onClick={handleClick}>Change to {walk ? "Stop" : "Walk"}</button>
+      <h1
+        style={{
+          color: walk ? "darkgreen" : "darkred",
+        }}
+      >
+        {walk ? "Walk" : "Stop"}
+      </h1>
+    </>
+  );
 }
