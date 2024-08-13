@@ -1,48 +1,47 @@
-import { getFinalState } from "./Components/processQueue";
-
-function increment(n) {
-  return n + 1;
-}
-increment.toString = () => "n => n+1";
-
+import { useState } from "react";
 export default function App() {
   return (
     <>
-      <TestCase baseState={0} queue={[1, 1, 1]} expected={1} />
-      <hr />
-      <TestCase
-        baseState={0}
-        queue={[increment, increment, increment]}
-        expected={3}
-      />
-      <hr />
-      <TestCase baseState={0} queue={[5, increment]} expected={6} />
-      <hr />
-      <TestCase baseState={0} queue={[5, increment, 42]} expected={42} />
+      <Form />
     </>
   );
 }
 
-function TestCase({ baseState, queue, expected }) {
-  const actual = getFinalState(baseState, queue);
+function Form() {
+  const [person, setPerson] = useState({
+    firstName: "Barbara",
+    lastName: "Hepworth",
+    email: "bhepworth@sculpture.com",
+  });
+
+  function handleFirstNameChange(e) {
+    setPerson({ ...person, firstName: e.target.value });
+  }
+
+  function handleLastNameChange(e) {
+    setPerson({ ...person, lastName: e.target.value });
+  }
+
+  function handleEmailChange(e) {
+    setPerson({ ...person, email: e.target.value });
+  }
+
   return (
     <>
+      <label>
+        First name:
+        <input value={person.firstName} onChange={handleFirstNameChange} />
+      </label>
+      <label>
+        Last name:
+        <input value={person.lastName} onChange={handleLastNameChange} />
+      </label>
+      <label>
+        Email:
+        <input value={person.email} onChange={handleEmailChange} />
+      </label>
       <p>
-        Base state: <b>{baseState}</b>
-      </p>
-      <p>
-        Queue: <b>[{queue.join(", ")}]</b>
-      </p>
-      <p>
-        Expected result: <b>{expected}</b>
-      </p>
-      <p
-        style={{
-          color: actual === expected ? "green" : "red",
-        }}
-      >
-        Your result: <b>{actual}</b> (
-        {actual === expected ? "correct" : "wrong"})
+        {person.firstName} {person.lastName} ({person.email})
       </p>
     </>
   );
