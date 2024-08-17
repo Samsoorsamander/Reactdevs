@@ -1,38 +1,31 @@
+import Chat from "./Components/Chat.js";
+import ContactList from "./Components/ContactList.js";
 import { useState } from "react";
 
 export default function App() {
   return (
     <>
-      <Form />
+      <Messenger />
     </>
   );
 }
 
-function Form() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const fullName = firstName + "  " + lastName;
-
-  function handleFirstNameChange(e) {
-    setFirstName(e.target.value);
-  }
-
-  function handleLastNameChange(e) {
-    setLastName(e.target.value);
-  }
-
+function Messenger() {
+  const [to, setTo] = useState(contacts[0]);
   return (
-    <>
-      <h2>Let’s check you in</h2>
-      <label>
-        First name: <input value={firstName} onChange={handleFirstNameChange} />
-      </label>
-      <label>
-        Last name: <input value={lastName} onChange={handleLastNameChange} />
-      </label>
-      <p>
-        Your ticket will be issued to: <b>{fullName}</b>
-      </p>
-    </>
+    <div>
+      <ContactList
+        contacts={contacts}
+        selectedContact={to}
+        onSelect={(contact) => setTo(contact)}
+      />
+      <Chat contact={to} />
+    </div>
   );
 }
+
+const contacts = [
+  { name: "Taylor", email: "taylor@mail.com" },
+  { name: "Alice", email: "alice@mail.com" },
+  { name: "Bob", email: "bob@mail.com" },
+];
