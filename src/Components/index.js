@@ -1,30 +1,55 @@
+let firstName = "Jane";
+let lastName = "Jacobs";
+let isEditing = false;
+
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === "Edit Profile") {
+  setIsEditing(!isEditing);
+}
+
+function handleFirstNameChange(e) {
+  setFirstName(e.target.value);
+}
+
+function handleLastNameChange(e) {
+  setLastName(e.target.value);
+}
+
+function setFirstName(value) {
+  firstName = value;
+  updateDOM();
+}
+
+function setLastName(value) {
+  lastName = value;
+  updateDOM();
+}
+
+function setIsEditing(value) {
+  isEditing = value;
+  updateDOM();
+}
+
+function updateDOM() {
+  if (isEditing) {
     editButton.textContent = "Save Profile";
-    hide(firstNameText);
-    hide(lastNameText);
+    // TODO: show inputs, hide content
     show(firstNameInput);
     show(lastNameInput);
+    hide(firstName);
+    hide(lastName);
   } else {
     editButton.textContent = "Edit Profile";
+    // TODO: hide inputs, show content
+    show(firstName);
+    show(lastName);
     hide(firstNameInput);
     hide(lastNameInput);
-    show(firstNameText);
-    show(lastNameText);
   }
-}
-
-function handleFirstNameChange() {
-  firstNameText.textContent = firstNameInput.value;
-  helloText.textContent =
-    "Hello " + firstNameInput.value + " " + lastNameInput.value + "!";
-}
-
-function handleLastNameChange() {
-  lastNameText.textContent = lastNameInput.value;
-  helloText.textContent =
-    "Hello " + firstNameInput.value + " " + lastNameInput.value + "!";
+  // TODO: update text labels
+  firstNameText.textContent = firstName;
+  lastNameText.textContent = lastName;
+  helloText = "Hello" + " " + firstName + " " + lastName;
 }
 
 function hide(el) {
@@ -34,7 +59,18 @@ function hide(el) {
 function show(el) {
   el.style.display = "";
 }
-
+function setFirstName(value) {
+  firstName = value;
+  updateDOM();
+}
+function setLastName(value) {
+  lastName = value;
+  updateDOM();
+}
+function setIsEditing(value) {
+  isEditing = value;
+  updateDOM();
+}
 let form = document.getElementById("form");
 let editButton = document.getElementById("editButton");
 let firstNameInput = document.getElementById("firstNameInput");
