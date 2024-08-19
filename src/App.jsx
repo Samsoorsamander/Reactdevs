@@ -3,52 +3,42 @@ import { useState } from "react";
 export default function App() {
   return (
     <>
-      <EditProfile />
+      <MovingDot />
     </>
   );
 }
 
-function EditProfile() {
-  const [firstName, setFirstName] = useState("Samsoor");
-  const [lastName, setLastName] = useState("samander");
-  const [isEditing, setIsEditing] = useState(false);
+function MovingDot() {
+  const [position, setPosition] = useState({
+    x: 0,
+    y: 0,
+  });
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setIsEditing(!isEditing);
+    <div
+      onPointerMove={(e) => {
+        setPosition({
+          x: e.clientX,
+          y: e.clientY,
+        });
+      }}
+      style={{
+        position: "relative",
+        width: "100vw",
+        height: "100vh",
       }}
     >
-      <label id="firstname">
-        First name:{" "}
-        {isEditing ? (
-          <input
-            id="firstname"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        ) : (
-          <b>{firstName}</b>
-        )}
-      </label>
-      <label id="lastname">
-        Last name:{" "}
-        {isEditing ? (
-          <input
-            id="lastname"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        ) : (
-          <b>{lastName}</b>
-        )}
-      </label>
-      <button type="submit">{isEditing ? "Save" : "Edite"} Profile</button>
-      <p>
-        <i>
-          Hello , {firstName} " " {lastName}
-        </i>
-      </p>
-    </form>
+      <div
+        style={{
+          position: "absolute",
+          backgroundColor: "red",
+          borderRadius: "50%",
+          transform: `translate(${position.x}px, ${position.y}px)`,
+          left: -10,
+          top: -10,
+          width: 20,
+          height: 20,
+        }}
+      />
+    </div>
   );
 }
