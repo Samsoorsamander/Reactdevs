@@ -3,36 +3,39 @@ import { useState } from "react";
 export default function App() {
   return (
     <>
-      <Form />
+      <Menu />
     </>
   );
 }
 
-function Form() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const fullName = firstName + " " + lastName;
+const initialItems = [
+  { title: "pretzels", id: 0 },
+  { title: "crispy seaweed", id: 1 },
+  { title: "granola bar", id: 2 },
+];
 
-  function handleFirstNameChange(e) {
-    setFirstName(e.target.value);
-  }
-
-  function handleLastNameChange(e) {
-    setLastName(e.target.value);
-  }
+function Menu() {
+  const [items, setItems] = useState(initialItems);
+  const [selectedItem, setSelectedItem] = useState(items[0]);
 
   return (
     <>
-      <h2>Let’s check you in</h2>
-      <label>
-        First name: <input value={firstName} onChange={handleFirstNameChange} />
-      </label>
-      <label>
-        Last name: <input value={lastName} onChange={handleLastNameChange} />
-      </label>
-      <p>
-        Your ticket will be issued to: <b>{fullName}</b>
-      </p>
+      <h2>What's your travel snack?</h2>
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item.title}{" "}
+            <button
+              onClick={() => {
+                setSelectedItem(item);
+              }}
+            >
+              Choose
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {selectedItem.title}.</p>
     </>
   );
 }
