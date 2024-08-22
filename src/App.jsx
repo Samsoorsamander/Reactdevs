@@ -1,50 +1,32 @@
-import { foods, filterItems } from "./Components/Data";
 import { useState } from "react";
 
 export default function App() {
+  const counter = <Counter />;
   return (
-    <>
-      <FilterableList />
-    </>
+    <div>
+      {counter}
+      {counter}
+    </div>
   );
+}
 
-  function FilterableList() {
-    const [query, setQuery] = useState("");
-    const result = filterItems(foods, query);
+function Counter() {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
 
-    function handleChange(e) {
-      setQuery(e.target.value);
-    }
-
-    return (
-      <>
-        <SearchBar qry={query} onChange={handleChange} />
-        <hr />
-        <List items={result} />
-      </>
-    );
+  let className = "counter";
+  if (hover) {
+    className += " hover";
   }
 
-  function SearchBar({ onChange, qry }) {
-    return (
-      <label>
-        Search: <input value={qry} onChange={onChange} />
-      </label>
-    );
-  }
-
-  function List({ items }) {
-    return (
-      <table>
-        <tbody>
-          {items.map((food) => (
-            <tr key={food.id}>
-              <td>{food.name}</td>
-              <td>{food.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  }
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>{score}</h1>
+      <button onClick={() => setScore(score + 1)}>Add one</button>
+    </div>
+  );
 }
