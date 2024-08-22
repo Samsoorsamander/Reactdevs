@@ -1,24 +1,24 @@
 import { useState } from "react";
 
 export default function App() {
-  const [showB, setShowB] = useState(true);
+  const [isFancy, setIsFancy] = useState(false);
+
   return (
     <div>
-      <Counter />
-      {showB && <Counter />}
+      {isFancy ? <Counter isFancy={true} /> : <Counter isFancy={false} />}
       <label>
         <input
           type="checkbox"
-          checked={showB}
-          onChange={(e) => setShowB(e.target.checked)}
+          checked={isFancy}
+          onChange={(e) => setIsFancy(e.target.checked)}
         />
-        Render the second counter
+        Use fancy Styling
       </label>
     </div>
   );
 }
 
-function Counter() {
+function Counter({ isFancy }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
 
@@ -26,7 +26,9 @@ function Counter() {
   if (hover) {
     className += " hover";
   }
-
+  if (isFancy) {
+    className += " fancy";
+  }
   return (
     <div
       className={className}
