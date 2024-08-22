@@ -1,51 +1,31 @@
 import { useState } from "react";
 
 export default function App() {
-  const [isFancy, setIsFancy] = useState(false);
   return (
-    <div>
-      {isFancy ? (
-        <div>
-          <Counter isFancy={true} />
-        </div>
-      ) : (
-        <section>
-          <Counter isFancy={false} />
-        </section>
-      )}
-      <label>
-        <input
-          type="checkbox"
-          checked={isFancy}
-          onChange={(e) => {
-            setIsFancy(e.target.checked);
-          }}
-        />
-        Use fancy styling
-      </label>
-    </div>
+    <>
+      <MyComponent />
+    </>
   );
 }
+function MyComponent() {
+  const [counter, setCounter] = useState(0);
 
-function Counter({ isFancy }) {
-  const [score, setScore] = useState(0);
-  const [hover, setHover] = useState(false);
+  function MyTextField() {
+    const [text, setText] = useState("");
 
-  let className = "counter";
-  if (hover) {
-    className += " hover";
+    return <input value={text} onChange={(e) => setText(e.target.value)} />;
   }
-  if (isFancy) {
-    className += " fancy";
-  }
+
   return (
-    <div
-      className={className}
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
-    >
-      <h1>{score}</h1>
-      <button onClick={() => setScore(score + 1)}>Add one</button>
-    </div>
+    <>
+      <MyTextField />
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        Clicked {counter} times
+      </button>
+    </>
   );
 }
