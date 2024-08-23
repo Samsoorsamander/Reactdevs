@@ -3,29 +3,45 @@ import { useState } from "react";
 export default function App() {
   return (
     <>
-      <MyComponent />
+      <Scoreboard />
     </>
   );
 }
-function MyComponent() {
-  const [counter, setCounter] = useState(0);
+function Scoreboard() {
+  const [isPlayerA, setIsPlayerA] = useState(true);
+  return (
+    <div>
+      {isPlayerA ? <Counter person="Taylor" /> : <Counter person="Sarah" />}
+      <button
+        onClick={() => {
+          setIsPlayerA(!isPlayerA);
+        }}
+      >
+        Next player!
+      </button>
+    </div>
+  );
+}
 
-  function MyTextField() {
-    const [text, setText] = useState("");
+function Counter({ person }) {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
 
-    return <input value={text} onChange={(e) => setText(e.target.value)} />;
+  let className = "counter";
+  if (hover) {
+    className += " hover";
   }
 
   return (
-    <>
-      <MyTextField />
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-        }}
-      >
-        Clicked {counter} times
-      </button>
-    </>
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>
+        {person}'s score: {score}
+      </h1>
+      <button onClick={() => setScore(score + 1)}>Add one</button>
+    </div>
   );
 }
