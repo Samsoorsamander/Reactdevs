@@ -12,13 +12,23 @@ export default function App() {
       )}
       <Form />
 
-      <button
-        onClick={() => {
-          setShowHint(!showHint);
-        }}
-      >
-        {showHint ? "Hide Hint" : "Show Hint"}
-      </button>
+      {showHint ? (
+        <button
+          onClick={() => {
+            setShowHint(false);
+          }}
+        >
+          Hide hint
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            setShowHint(true);
+          }}
+        >
+          Show hint
+        </button>
+      )}
     </div>
   );
 }
