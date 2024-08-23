@@ -19,7 +19,7 @@ export default function Gallery() {
       <h3>
         Image {index + 1} of {images.length}
       </h3>
-      <img key={index + 1} src={image.src} />
+      <img key={image.src} src={image.src} />
       <p>{image.place}</p>
     </>
   );
