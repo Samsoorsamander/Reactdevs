@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ContactManager from "./Components/ContactManager";
+import Gallery from "./Components/Gallery";
 
 export default function App() {
   return (
     <>
-      <ContactManager />
+      <Gallery />
     </>
   );
 }
