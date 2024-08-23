@@ -11,8 +11,11 @@ function Scoreboard() {
   const [isPlayerA, setIsPlayerA] = useState(true);
   return (
     <div>
-      {isPlayerA && <Counter person="Taylor" />}
-      {!isPlayerA && <Counter person={"sarah"} />}
+      {isPlayerA ? (
+        <Counter key="Taylor" person="Taylor" />
+      ) : (
+        <Counter key="Sarah" person="Sarah" />
+      )}
       <button
         onClick={() => {
           setIsPlayerA(!isPlayerA);
