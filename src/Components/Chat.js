@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-export default function Chat({ contact }) {
-  const [text, setText] = useState("");
+export default function Chat({ contact, text }) {
   return (
     <section className="chat">
       <textarea
