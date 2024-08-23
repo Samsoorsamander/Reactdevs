@@ -10,6 +10,7 @@ export default function App() {
   );
 }
 function Messenger() {
+  const [text, setText] = useState("");
   const [to, setTo] = useState(contacts[0]);
   return (
     <div>
@@ -18,7 +19,7 @@ function Messenger() {
         selectedContact={to}
         onSelect={(contact) => setTo(contact)}
       />
-      <Chat key={to.id} contact={to} />
+      <Chat key={to.id} contact={to} text={text} />
     </div>
   );
 }
