@@ -12,7 +12,7 @@ function Scoreboard() {
   return (
     <div>
       {isPlayerA ? (
-        <Counter key="Taylor" person="Taylor" />
+        <Counter person="Taylor" />
       ) : (
         <Counter key="Sarah" person="Sarah" />
       )}
