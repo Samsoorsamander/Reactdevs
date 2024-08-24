@@ -10,8 +10,6 @@ export default function App() {
 }
 
 function TaskApp() {
-  const [tasks, setTasks] = useState(initialTasks);
-
   function handleAddTask(text) {
     dispatch({
       type: "added",
@@ -53,3 +51,32 @@ const initialTasks = [
   { id: 1, text: "Watch a puppet show", done: false },
   { id: 2, text: "Lennon Wall pic", done: false },
 ];
+function tasksReducer(tasks, action) {
+  switch (action.type) {
+    case "added": {
+      return [
+        ...tasks,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
+    }
+    case "changed": {
+      return tasks.map((t) => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
+    case "deleted": {
+      return tasks.filter((t) => t.id !== action.id);
+    }
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
