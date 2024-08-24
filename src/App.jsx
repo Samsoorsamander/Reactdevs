@@ -1,45 +1,60 @@
+import AddTask from "./AddTask.js";
+import TaskList from "./Components/TaskList.js";
 import { useState } from "react";
-import Contact from "./Components/Contact";
 export default function App() {
   return (
     <>
-      <ContactList />
+      <TaskApp />
     </>
   );
 }
-function ContactList() {
-  const [reverse, setReverse] = useState(false);
 
-  const displayedContacts = [...contacts];
-  if (reverse) {
-    displayedContacts.reverse();
+function TaskApp() {
+  const [tasks, setTasks] = useState(initialTasks);
+
+  function handleAddTask(text) {
+    setTasks([
+      ...tasks,
+      {
+        id: nextId++,
+        text: text,
+        done: false,
+      },
+    ]);
+  }
+
+  function handleChangeTask(task) {
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return task;
+        } else {
+          return t;
+        }
+      })
+    );
+  }
+
+  function handleDeleteTask(taskId) {
+    setTasks(tasks.filter((t) => t.id !== taskId));
   }
 
   return (
     <>
-      <label>
-        <input
-          type="checkbox"
-          value={reverse}
-          onChange={(e) => {
-            setReverse(e.target.checked);
-          }}
-        />{" "}
-        Show in reverse order
-      </label>
-      <ul>
-        {displayedContacts.map((contact) => (
-          <li key={contact.id}>
-            <Contact contact={contact} />
-          </li>
-        ))}
-      </ul>
+      <h1>Prague itinerary</h1>
+      <AddTask onAddTask={handleAddTask} />
+      <TaskList
+        tasks={tasks}
+        onChangeTask={handleChangeTask}
+        onDeleteTask={handleDeleteTask}
+      />
     </>
   );
 }
 
-const contacts = [
-  { id: 0, name: "Alice", email: "alice@mail.com" },
-  { id: 1, name: "Bob", email: "bob@mail.com" },
-  { id: 2, name: "Taylor", email: "taylor@mail.com" },
+let nextId = 3;
+const initialTasks = [
+  { id: 0, text: "Visit Kafka Museum", done: true },
+  { id: 1, text: "Watch a puppet show", done: false },
+  { id: 2, text: "Lennon Wall pic", done: false },
 ];
