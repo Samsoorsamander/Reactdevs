@@ -1,6 +1,6 @@
 import AddTask from "./AddTask.js";
 import TaskList from "./Components/TaskList.js";
-import { useState } from "react";
+import { useReducer } from "react";
 export default function App() {
   return (
     <>
@@ -10,6 +10,7 @@ export default function App() {
 }
 
 function TaskApp() {
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   function handleAddTask(text) {
     dispatch({
       type: "added",
