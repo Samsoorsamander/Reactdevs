@@ -1,19 +1,15 @@
-import { useReducer } from "react";
 export default function ContactList({ contacts, selectedId, dispatch }) {
   return (
-    <section>
+    <section className="contact-list">
       <ul>
         {contacts.map((contact) => (
           <li key={contact.id}>
             <button
               onClick={() => {
-                dispatch({
-                  type: "changed_selection",
-                  contactId: contact.id,
-                });
+                // TODO: dispatch changed_selection
               }}
             >
-              {contact.id === selectedId ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
             </button>
           </li>
         ))}
