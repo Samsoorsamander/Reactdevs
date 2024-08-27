@@ -1,4 +1,5 @@
-export default function ContactList({ contacts, selectedId, onSelect }) {
+import { useReducer } from "react";
+export default function ContactList({ contacts, selectedId, dispatch }) {
   return (
     <section>
       <ul>
@@ -6,7 +7,10 @@ export default function ContactList({ contacts, selectedId, onSelect }) {
           <li key={contact.id}>
             <button
               onClick={() => {
-                onSelect(contact.id);
+                dispatch({
+                  type: "changed_selection",
+                  contactId: contact.id,
+                });
               }}
             >
               {contact.id === selectedId ? <b>{contact.name}</b> : contact.name}
