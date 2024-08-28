@@ -10,7 +10,18 @@ export default function Chat({ contact, message, dispatch }) {
         }}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button
+        onClick={() => {
+          alert(`this message ${message} sented to  ${contact.email}`);
+
+          dispatch({
+            type: "edited_message",
+            message: "",
+          });
+        }}
+      >
+        Send to {contact.email}
+      </button>
     </section>
   );
 }
