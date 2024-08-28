@@ -5,7 +5,7 @@ export default function ContactList({ contacts, selectedId, dispatch }) {
         {contacts.map((contact) => (
           <li key={contact.id}>
             <button
-              onClick={() => {
+              onClick={(e) => {
                 // TODO: dispatch changed_selection
                 dispatch({
                   type: "changed_selection",
