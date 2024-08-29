@@ -1,8 +1,8 @@
-import Messenger from "./Components/Messenger";
+import Page from "../components/Page.jsx";
 export default function App() {
   return (
     <>
-      <Messenger />
+      <Page />
     </>
   );
 }
