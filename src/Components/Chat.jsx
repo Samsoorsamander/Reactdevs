@@ -7,10 +7,6 @@ export default function Chat({ contact, message, dispatch }) {
         onChange={(e) => {
           // TODO: dispatch edited_message
           // (Read the input value from e.target.value)
-          dispatch({
-            type: "edited_message",
-            message: e.target.message,
-          });
         }}
       />
       <br />
@@ -19,7 +15,8 @@ export default function Chat({ contact, message, dispatch }) {
           alert(`this message ${message} sented to  ${contact.email}`);
 
           dispatch({
-            type: "sent_message",
+            type: "edited_message",
+            message: "",
           });
         }}
       >

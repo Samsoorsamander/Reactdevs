@@ -1,5 +1,6 @@
-import Heading from "./Heading";
-import Section from "./Section";
+import Heading from "../Components/Heading.jsx";
+import Section from "../Components/Section.jsx";
+
 export default function Page() {
 
 
